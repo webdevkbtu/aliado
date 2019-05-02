@@ -1,8 +1,18 @@
+## KBTU Web Development Class. Spring 2019
+
+### Project work
 # SalesReseller
 
-Бакытнурулы Ерасыл  /hentaai/
-Макатов Самат       /makatov/
+### Team Members
+| Name | GitHub account | Email |
+| --- | --- | --- |
+| Бакытнурулы Ерасыл| [hentaai](https://github.com/hentaai) | |
+| Макатов Самат | [makatov](https://github.com/Makatov) |  |
+| Орал Алмас| [Almajesty15](https://github.com/Almajesty15) | almas.oral.kz@gmail.com |
 
+
+
+### Project description
 Время прочтения: 1.5 минуты
 Интернет магазин который реализует товары находящиеся на
 скидках в США
