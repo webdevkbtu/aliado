@@ -1,0 +1,25 @@
+CREATE CATEGORY:
+
+<div>
+  <input type="text" [(ngModel)]="name">
+  <input type="text" [(ngModel)]="description">
+</div>
+
+CATEGORIES:
+<div>
+  <div *ngFor="let c of categories">
+    <span (click)="getProducts(c)">
+      <input type="text" [(ngModel)]="c.categoryNameNo value accessor for form control with unspecified name attribute">
+    </span>
+  </div>
+</div>
+
+<br>
+
+PRODUCTS:
+<div *ngFor="let p of products">
+  {{p.id}} - {{p.itemName}}
+</div>
+
+
+
