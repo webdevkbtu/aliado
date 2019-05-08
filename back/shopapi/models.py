@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+
 class Categories(models.Model):
     categoryName = models.CharField(max_length=20)
     categoryDescription = models.CharField(max_length=20)
@@ -23,10 +24,9 @@ class Product(models.Model):
 
 class Orders(models.Model):
     orderDate = models.DateField(auto_now=True)
-    userName = models.CharField(max_length=20)
+    userID = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     amount = models.IntegerField()
     items = models.ManyToManyField(Product)
-    isOrder = models.BooleanField()
 
 
 class Suppliers(models.Model):
@@ -45,3 +45,7 @@ class ShoppingCart(models.Model):
     items = models.ManyToManyField(Product)
 
 
+class Transactions(models.Model):
+    userID = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    cost = models.IntegerField()
+    isOrder = models.BooleanField(default=False)
