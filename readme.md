@@ -8,7 +8,6 @@
 | --- | --- | --- |
 | Бакытнурулы Ерасыл| [hentaai](https://github.com/hentaai) | |
 | Макатов Самат | [makatov](https://github.com/Makatov) |  |
-| Орал Алмас| [Almajesty15](https://github.com/Almajesty15) | almas.oral.kz@gmail.com |
 
 
 
