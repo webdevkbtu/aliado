@@ -2,6 +2,7 @@ export interface ICategory {
   id: number;
   categoryName: string;
   categoryDescription: string;
+  image: ImageBitmap;
 }
 
 export interface IProduct {
@@ -12,6 +13,7 @@ export interface IProduct {
   sellingPrice: number;
   category: number;
   stock: number;
+  image: ImageBitmap;
 }
 
 export interface IOrder {
@@ -20,3 +22,11 @@ export interface IOrder {
   address: string;
   kind: string;
 }
+
+export interface IAuthResponse {
+  token: string;
+  isStaff: boolean;
+  username: string
+}
+
+

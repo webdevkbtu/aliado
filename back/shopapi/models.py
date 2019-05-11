@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Categories(models.Model):
     categoryName = models.CharField(max_length=20)
     categoryDescription = models.CharField(max_length=20)
+    image = models.ImageField(upload_to='', blank=True, null=True)
 
 
 class Product(models.Model):
@@ -15,7 +16,8 @@ class Product(models.Model):
     sellingPrice = models.IntegerField()
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     stock = models.PositiveIntegerField()
-
+    image = models.ImageField(upload_to='', blank=True, null=True)
+    count= models.IntegerField(null=True)
 # class OrderItem(models.Model):
 #     product = models.OneToOneField(Product, on_delete=models.SET_NULL, null=True)
 #     is_ordered = models.BooleanField(default=True)
@@ -25,7 +27,6 @@ class Product(models.Model):
 class Orders(models.Model):
     orderDate = models.DateField(auto_now=True)
     userID = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    amount = models.IntegerField()
     items = models.ManyToManyField(Product)
 
 

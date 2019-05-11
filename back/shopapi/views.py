@@ -14,6 +14,7 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CategorySerializer
 
     def get_queryset(self):
+        print(Categories.objects.get(id=1).image.path)
         print(Categories.objects.get(id=self.kwargs['pk']))
         return Categories.objects.filter(id=self.kwargs['pk'])
 

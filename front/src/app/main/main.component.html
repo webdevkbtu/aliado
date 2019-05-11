@@ -1,25 +1,42 @@
-CREATE CATEGORY:
-
 <div>
-  <input type="text" [(ngModel)]="name">
-  <input type="text" [(ngModel)]="description">
+  <ng-container *ngIf="!logged">
+    <input type="text" [(ngModel)]="username">
+    <input type="password" [(ngModel)]="password">
+    <button (click)="auth()">LOG IN</button>
+    <br>
+    <input type="text" [(ngModel)]="username">
+    <input type="text" [(ngModel)]="email">
+    <input type="password" [(ngModel)]="password">
+    <button (click)="signup()">SIGN UP</button>
+  </ng-container>
+
+  <ng-container *ngIf="logged">
+    <h4>HI {{loggedUsername}}</h4>
+    <div>
+      <button (click)="logout()">LOG OUT</button>
+    </div>
+
+    <div>
+      <ng-container *ngIf="isStaff">
+      CREATE CATEGORY
+        <div>
+          <input type="text" [(ngModel)]="name">
+          <input type="text" [(ngModel)]="description">
+          <button (click)="createCategory()">CREATE</button>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
 </div>
-
-CATEGORIES:
 <div>
-  <div *ngFor="let c of categories">
-    <span (click)="getProducts(c)">
-      <input type="text" [(ngModel)]="c.categoryNameNo value accessor for form control with unspecified name attribute">
-    </span>
+
+
+  CATEGORIES:
+  <div>
+    <div *ngFor="let c of categories">
+        <div><a routerLink="/categories/{{c.id}}">{{c.categoryName}}</a></div>
+    </div>
   </div>
 </div>
-
-<br>
-
-PRODUCTS:
-<div *ngFor="let p of products">
-  {{p.id}} - {{p.itemName}}
-</div>
-
-
 
