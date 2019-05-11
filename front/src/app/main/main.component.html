@@ -13,11 +13,14 @@
   <ng-container *ngIf="logged">
     <h4>HI {{loggedUsername}}</h4>
     <div>
+      <div routerLink="/orders/">ORDERS</div>
+    </div>
+    <div>
       <button (click)="logout()">LOG OUT</button>
     </div>
 
     <div>
-      <ng-container *ngIf="isStaff">
+      <ng-container *ngIf="provider.isStaff">
       CREATE CATEGORY
         <div>
           <input type="text" [(ngModel)]="name">

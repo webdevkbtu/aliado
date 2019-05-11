@@ -27,7 +27,7 @@ class Product(models.Model):
 class Orders(models.Model):
     orderDate = models.DateField(auto_now=True)
     userID = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    items = models.ManyToManyField(Product)
+    items = models.ManyToManyField(Product, null=True)
 
 
 class Suppliers(models.Model):
@@ -43,7 +43,7 @@ class Suppliers(models.Model):
 
 class ShoppingCart(models.Model):
     userID = models.OneToOneField(User, on_delete=models.CASCADE)
-    items = models.ManyToManyField(Product)
+    items = models.ManyToManyField(Product, null=True)
 
 
 class Transactions(models.Model):

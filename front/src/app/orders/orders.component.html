@@ -1,0 +1,20 @@
+ORDERS:
+<div *ngFor="let o of orders">
+  <div>{{o.id}} - {{o.orderDate}} - {{o.userID}}</div>
+  <div *ngFor="let i of o.items">ITEMS: {{i}}</div>
+</div>
+
+<h1>MAKE AN ORDER:</h1>
+
+SELECT ITEMS TO ORDER:
+<div *ngFor="let i of arrItems">
+    <div (click)="select(i)" >{{i.itemName}}</div>
+</div>
+
+<br>
+ITEMS SELECTED:
+<div *ngFor="let i of selItems">
+  <div (click)="deselect(i)">{{i.itemName}}</div>
+</div>
+
+<button (click)="createOrder()">ORDER</button>

@@ -18,15 +18,15 @@ export interface IProduct {
 
 export interface IOrder {
   id: number;
-  date: Date;
-  address: string;
-  kind: string;
+  orderDate: Date;
+  userID: number;
+  items: number[];
 }
 
 export interface IAuthResponse {
   token: string;
   isStaff: boolean;
-  username: string
+  username: string;
 }
 
 

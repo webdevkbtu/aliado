@@ -10,7 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
 import {AuthInterceptor} from './AuthInterceptor';
-
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +18,14 @@ import {AuthInterceptor} from './AuthInterceptor';
     MainComponent,
     ProductsComponent,
     CategoriesComponent,
-
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     ProviderService,

@@ -23,8 +23,10 @@ export class MainComponent implements OnInit {
   public username = '';
   public password = '';
   public email = '';
-  public isStaff = false;
   public logged = false;
+  public isStaff = false;
+
+  // tslint:disable-next-line:max-line-length
   public loggedUsername = '';//sdelat' tak chtob na backe vozrashalsya username, proverit', dovav'it otdelniye fieldy dlya regi i logina, nachat' vnedrenie orderov i shoppingcart
   constructor(private provider: ProviderService) { }
 

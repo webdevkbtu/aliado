@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from shopapi.models import *
 from shopapi.serializers import *
 from django.http import Http404
@@ -17,6 +21,15 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
         print(Categories.objects.get(id=1).image.path)
         print(Categories.objects.get(id=self.kwargs['pk']))
         return Categories.objects.filter(id=self.kwargs['pk'])
+
+
+class AllProducts(APIView):
+
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 
 class ProductGetCreate(generics.ListCreateAPIView):
@@ -47,9 +60,11 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class OrdersGetCreate(generics.ListCreateAPIView):
     serializer_class = OrdersSerializer
+    permission_classes = (IsAdminUser, )
 
     def get_queryset(self):
         return Orders.objects.all()
 
     def perform_create(self, serializer):
-        serializer.save(userID=self.request.user.id)
+        print(serializer.validated_data)
+        serializer.save(userID=self.request.user)

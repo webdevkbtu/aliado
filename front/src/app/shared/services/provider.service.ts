@@ -1,14 +1,13 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MainService} from './main.service';
-import {IAuthResponse, ICategory, IProduct} from '../models/models';
+import {IAuthResponse, ICategory, IOrder, IProduct} from '../models/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProviderService extends MainService {
 
-  public sendMessage = new EventEmitter<string>();
 
   constructor(http: HttpClient) {
     super(http);
@@ -48,6 +47,9 @@ export class ProviderService extends MainService {
     return this.get(`http://localhost:8000/shop/products/${id}/`, {});
   }
 
+  getAllProducts(): Promise<IProduct[]> {
+    return this.get(`http://localhost:8000/shop/products/`, {});
+  }
 
   createProduct(product: IProduct): Promise<any> {
     return this.post(`http://localhost:8000/shop/categories/${product.category}/products/`, {
@@ -57,6 +59,15 @@ export class ProviderService extends MainService {
       sellingPrice: product.sellingPrice,
       categoryID: product.category,
       stock: product.stock
+    });
+  }
+
+  getOrders(): Promise<IOrder[]> {
+    return this.get(`http://localhost:8000/shop/orders/`, {});
+  }
+  createOrder(items: number[]): Promise<any> {
+    return this.post(`http://localhost:8000/shop/orders/`, {
+      items
     });
   }
 
