@@ -71,7 +71,6 @@ class SuppliersSerializer(serializers.ModelSerializer):
 
 class ShoppingCartSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    items = ProductSerializer(many=True)
 
     class Meta:
         model = ShoppingCart

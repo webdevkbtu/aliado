@@ -51,6 +51,10 @@ export class ProviderService extends MainService {
     return this.get(`http://localhost:8000/shop/products/`, {});
   }
 
+  addProduct(): Promise<> {
+
+  }
+  //dobavit' model shopping cart, zamutit' method, products
   createProduct(product: IProduct): Promise<any> {
     return this.post(`http://localhost:8000/shop/categories/${product.category}/products/`, {
       itemName: product.itemName,

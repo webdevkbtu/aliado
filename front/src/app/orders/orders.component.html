@@ -10,7 +10,6 @@ SELECT ITEMS TO ORDER:
 <div *ngFor="let i of arrItems">
     <div (click)="select(i)" >{{i.itemName}}</div>
 </div>
-
 <br>
 ITEMS SELECTED:
 <div *ngFor="let i of selItems">
@@ -18,4 +17,3 @@ ITEMS SELECTED:
 </div>
 
 <button (click)="createOrder()">ORDER</button>
-"TEST2"

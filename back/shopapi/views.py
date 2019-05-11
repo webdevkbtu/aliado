@@ -68,3 +68,17 @@ class OrdersGetCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         print(serializer.validated_data)
         serializer.save(userID=self.request.user)
+
+
+class ShoppingCart(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def put(self, request):
+        cart = ShoppingCart.objects.get(userID=request.user)
+        serializer = ShoppingCartSerializer(data=request.data, instance=cart)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+
