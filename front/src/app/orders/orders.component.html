@@ -1,42 +1,85 @@
-FILTER:
-<select [(ngModel)]="filterid">
-  <option *ngFor="let o of orders" [ngValue]="o.id">{{o.id}}</option>
-</select>
-<button (click)="filter(filterid)">FILTER</button>
-ORDERS:
-<div *ngFor="let o of orders">
-  <div>{{o.id}} - {{o.orderDate}} - {{o.user}}</div>
-  <div *ngFor="let i of o.items">ITEMS: {{i}}</div>
-</div>
 
-<h1>MAKE AN ORDER:</h1>
-
-SELECT ITEMS TO ORDER:
-<div *ngFor="let i of arrItems">
-    <div (click)="select(i)" >{{i.itemName}}</div>
-</div>
-<br>
-ITEMS SELECTED:
-<div *ngFor="let i of selItems">
-  <div (click)="deselect(i)">{{i.itemName}}</div>
-</div>
-
-<div>
-  SELECT SUPPLIER:
-  <select [(ngModel)]="supplier">
-    <option *ngFor="let s of suppliers" [ngValue]="s.id">{{s.supName}}</option>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+  FILTER:
+  <select class="browser-default custom-select"[(ngModel)]="filterid">
+    <option *ngFor="let o of orders" [ngValue]="o.id">{{o.id}}</option>
+    <br>
   </select>
+
+    <button type="button" class="btn btn-outline-warning" (click)="filter(filterid)" >Filter</button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-6" *ngFor="let o of orders">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Number: {{o.user}} - Date: {{o.orderDate}}</h5>
+          <p class="card-text" *ngFor="let i of o.items">Items: {{i}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+
+    </div>
+    <br>
+  </div>
+
+  <br>
+  <div class="row">
+
+    <div class="col-sm-12">
+      <br>
+      <ul class="list-group">
+        <li class="list-group-item active">MAKE AN ORDER:</li>
+      </ul>
+      <br>
+      <ul class="list-group">
+        <li class="list-group-item active">SELECT ITEMS TO ORDER:</li>
+      </ul>
+      <ul class="list-group" *ngFor="let i of arrItems">
+        <li class="list-group-item" (click)="select(i)" >{{i.itemName}}</li>
+      </ul>
+      <br>
+      <ul class="list-group">
+        <li class="list-group-item active">ITEMS SELECTED:</li>
+      </ul>
+      <ul class="list-group" *ngFor="let i of selItems">
+        <li class="list-group-item" (click)="deselect(i)">{{i.itemName}}</li>
+      </ul>
+
+      <div>
+        SELECT SUPPLIER:
+        <select class="custom-select"[(ngModel)]="supplier">
+          <option *ngFor="let s of suppliers" [ngValue]="s.id">{{s.supName}}</option>
+        </select>
+      </div>
+
+
+      <div>
+        SELECT DELIVERYMETHOD:
+        <select class="custom-select" [(ngModel)]="deliverymethod">
+          <option *ngFor="let d of deliverymethods" [ngValue]="d.id">{{d.methodDescription}}</option>
+        </select>
+      </div>
+
+      <br>
+      <button class="btn btn-success" (click)="createOrder()">ORDER</button>
+
+    </div>
+  </div>
+  <br>
+
+
 </div>
 
 
-<div>
-  SELECT DELIVERYMETHOD:
-  <select [(ngModel)]="deliverymethod">
-    <option *ngFor="let d of deliverymethods" [ngValue]="d.id">{{d.methodDescription}}</option>
-  </select>
-</div>
 
-<button (click)="createOrder()">ORDER</button>
+
+
+
+
 
 <!--<div>-->
 <!--  SELECT ITEMS TO ORDER:-->
