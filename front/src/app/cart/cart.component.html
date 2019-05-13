@@ -1,17 +1,50 @@
-<div class="cart">
-  <div *ngFor="let i of products">
-    <div>{{i.itemName}}</div>
-    <div>{{i.itemDescription}}</div>
-    <div>{{i.sellingPrice}}</div>
-  </div>
-  <div>
-    <div>COST: {{cost}}</div>
-    <div>
-      SELECT DELIVERYMETHOD:
-      <select [(ngModel)]="deliverymethod">
-        <option *ngFor="let d of deliverymethods" [ngValue]="d.id">{{d.methodDescription}}</option>
-      </select>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
     </div>
-  <button (click)="buy()">BUY</button>
+    <div class="col-9">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active">
+          Checkout:
+        </a>
+      </div>
+      <ul class="list-group" *ngFor="let i of products">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{i.itemName}}
+          <span class="badge badge-primary badge-pill"></span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{i.itemDescription}}
+          <span class="badge badge-primary badge-pill"></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Price:
+          <span class="badge badge-primary badge-pill">{{i.sellingPrice}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Total cost:
+          <span class="badge badge-primary badge-pill">{{cost}}</span>
+        </li>
+        <br>
+
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Chose the delivery method:</h5>
+              <small>3 days ago</small>
+            </div>
+            <select class="browser-default custom-select" [(ngModel)]="deliverymethod">
+              <option *ngFor="let d of deliverymethods" [ngValue]="d.id">{{d.methodDescription}}</option>
+            </select>
+          </a>
+        </div>
+        <br>
+
+        <button type="button" class="btn btn-outline-success" (click)="buy()" >Buy</button>
+      </ul>
+
+    </div>
+
   </div>
 </div>
