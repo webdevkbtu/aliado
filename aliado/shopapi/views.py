@@ -1,4 +1,5 @@
 from django.http import Http404
+from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
@@ -42,8 +43,8 @@ class ProductGetCreate(generics.ListCreateAPIView):
         return queryset
 
     def perform_create(self, serializer):
-        print(self.kwargs)
         serializer.save(category=Categories.objects.get(id=self.kwargs['pk']))
+        Inventory.objects.create(itemNum=self.kwargs['pk'], stock=10)
 
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -90,3 +91,7 @@ class OrderRetrieve(generics.RetrieveAPIView):
         print(Orders.objects.filter(id=self.kwargs['pk']))
         queryset = Orders.objects.filter(id=self.kwargs['pk'])
         return queryset
+
+
+def index(request):
+    return render(request, 'index.html')

@@ -18,9 +18,10 @@ from django.urls import path, re_path, include
 from django.conf import settings
 from django.views.static import serve
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shop/', include('shopapi.urls'))
+    path('shop/', include('shopapi.urls')),
 ]
 
 if settings.DEBUG:

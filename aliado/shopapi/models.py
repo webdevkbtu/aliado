@@ -89,6 +89,13 @@ class Suppliers(models.Model):
         return self.supName
 
 
+class OrdersManager(models.Manager):
+
+    def get_time(self, date):
+        return self.filter(arriveDate=date)
+
+
+
 class Orders(models.Model):
     orderDate = models.DateTimeField(auto_now=True)
     shipDate = models.DateTimeField(default=default_time)
@@ -98,6 +105,8 @@ class Orders(models.Model):
     items = models.ManyToManyField(Product)
     isOrder = models.BooleanField(default=False)
     supId = models.ForeignKey(Suppliers, on_delete=models.SET_NULL, null=True)
+
+    objects = OrdersManager()
 
     class Meta:
         verbose_name = 'Order'
