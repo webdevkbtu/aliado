@@ -1,9 +1,57 @@
-<ng-container *ngIf="loading">
-  <div class="prod-list">
-    <h1>{{product.itemName}}</h1>
-    <img src="{{product.image}}">
-    <h3>{{product.itemDescription}}</h3>
-    <h4>Price: {{product.sellingPrice}}$</h4>
-    <button (click)="addToCart(product)">ADD TO CART</button>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ng-container *ngIf="loading">
+        <div class="card mb-3">
+          <img src="{{product.image}}" class="card-img-top" alt="{{product.itemName}}">
+          <div class="card-body">
+            <h5 class="card-title">{{product.itemName}}</h5>
+            <p class="card-text">{{product.itemDescription}}</p>
+            <p class="card-text"><small class="text-muted">Price: {{product.sellingPrice}}$</small></p>
+
+
+
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal3" (click)="addToCart(product)">
+              Add to cart
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="alert alert-success" role="alert">
+                      Success! You are added item to cart.
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/cart/">To Checkout</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </ng-container>
+
+
+    </div>
+
   </div>
-</ng-container>
+</div>
+

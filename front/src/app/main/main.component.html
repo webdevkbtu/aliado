@@ -1,64 +1,170 @@
-<div>
-  <div class="header-main">
-  <ng-container class="ng-header" *ngIf="!logged">
-    <div style="float: left">
-      <div>
-        <label for="user">Username</label>
-        <input id="user" type="text" [(ngModel)]="username">
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input id="password" type="password" [(ngModel)]="password">
-      </div>
-      <button class="but" (click)="auth()">LOG IN</button>
-    </div>
-    <div>
-      <div>
-        <label for="newuser">New Username</label>
-        <input id="newuser" type="text" [(ngModel)]="signupname">
-      </div>
-      <div>
-        <label for="email">E-mail</label>
-        <input id="email" type="text" [(ngModel)]="email">
-      </div>
-      <div>
-        <label for="newpassword">Password</label>
-        <input id="newpassword" type="password" [(ngModel)]="signuppassword">
-      </div>
-      <button class="but" (click)="signup()">SIGN UP</button>
-    </div>
-  </ng-container>
 
-  <ng-container *ngIf="logged">
-    <h4>Welcome, {{loggedUsername}}</h4>
-    <div>
-      <button routerLink="/cart/">CART</button>
-    </div>
-    <div>
-      <button (click)="logout()">LOG OUT</button>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">US4.KZ</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ng-container class="ng-header" *ngIf="!logged">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngFor="let c of categories">
+            <a class="dropdown-item" routerLink="/categories/{{c.id}}">{{c.categoryName}}</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </ng-container>
+
+    <ng-container class="ng-header" *ngIf="logged">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart/">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >Welcome, {{loggedUsername}}</a>
+        </li>
+      </ul>
       <ng-container *ngIf="isStaff">
-        <div>
-          <button routerLink="/orders/">ORDERS</button>
+        <div><input class="form-control" type="text" placeholder="Name of category" [(ngModel)]="name">
         </div>
-      CREATE CATEGORY
-        <div>
-          <input type="text" [(ngModel)]="name">
-          <input type="text" [(ngModel)]="description">
-          <button (click)="createCategory()">CREATE</button>
+        <div> <input class="form-control" type="text" placeholder="Desc of category" [(ngModel)]="description"></div>
+        <div><button type="button" class="btn btn-info" (click)="createCategory()">Create</button>
         </div>
-      </ng-container>
-    </div>
-  </ng-container>
+        <div><button type="button" class="btn btn-success" routerLink="/orders/">Orders</button>
+        </div>
 
-</div>
-  CATEGORIES:
-  <div class="cat-list">
-    <div *ngFor="let c of categories">
-        <div><a routerLink="/categories/{{c.id}}">{{c.categoryName}}</a></div>
+      </ng-container>
+      <div>      <button type="button" class="btn btn-dark" (click)="logout()">Logout</button>
+      </div>
+    </ng-container>
+
+    <ng-container class="ng-header" *ngIf="!logged">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Sign In
+      </button>
+    </ng-container>
+    <ng-container class="ng-header" *ngIf="!logged">
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div style="float: left">
+                <div>
+                  <label for="user">Username</label>
+                  <input class="form-control" id="user" type="text" [(ngModel)]="username">
+                </div>
+                <div>
+                  <label for="password">Password</label>
+                  <input class="form-control" id="password" type="password" [(ngModel)]="password">
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="auth()" data-dismiss="modal">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div></div>
+    <ng-container class="ng-header" *ngIf="!logged">
+
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal1">
+        Sign Up
+      </button>
+    </ng-container>
+    <ng-container class="ng-header" *ngIf="!logged">
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel1">Sign Up</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div>
+                <div>
+                  <label for="newuser">New Username</label>
+                  <input class="form-control" id="newuser" type="text" [(ngModel)]="signupname">
+                </div>
+                <div>
+                  <label for="email">E-mail</label>
+                  <input  class="form-control"id="email" type="text" [(ngModel)]="email">
+                </div>
+                <div>
+                  <label for="newpassword">Password</label>
+                  <input class="form-control" id="newpassword" type="password" [(ngModel)]="signuppassword">
+                </div>
+
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="signup()" data-dismiss="modal">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</nav>
+<div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">
+            Categories
+          </a>
+        </div>
+        <div class="list-group" *ngFor="let c of categories">
+          <a class="list-group-item list-group-item-action" routerLink="/categories/{{c.id}}">{{c.categoryName}}</a>
+          </div>
+      </div>
+
+        <div class="col-md-9">
+          <div class="jumbotron">
+            <br>
+            <h1 class="display-5">This is online shop</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          </div>
+        </div>
+
     </div>
   </div>
 </div>
-
