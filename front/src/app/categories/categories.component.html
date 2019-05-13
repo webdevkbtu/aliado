@@ -1,8 +1,10 @@
 <ng-container *ngIf="loading">
-  <h1>{{category.categoryName}}</h1>
-  <h3>{{category.categoryDescription}}</h3>
-  <img src="{{category.image}}">
-  <div *ngFor="let p of products">
-    <span routerLink="/products/{{p.id}}">{{p.itemName}} -{{p.sellingPrice}}$</span>
+  <div class="cat-list2">
+    <h1>{{category.categoryName}}</h1>
+    <h3>{{category.categoryDescription}}</h3>
+    <img src="{{category.image}}">
+    <div *ngFor="let p of products">
+      <span routerLink="/products/{{p.id}}">{{p.itemName}} -{{p.sellingPrice}}$</span>
+    </div>
   </div>
 </ng-container>

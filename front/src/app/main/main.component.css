@@ -1,0 +1,39 @@
+.header-main{
+  background-color: rgba(223, 245, 165, 0.55);
+  text-align: right;
+  color: #fef9ff;
+  padding-left: 10px;
+
+}
+div{
+  padding-right: 8px;
+  padding-top: 3px;
+}
+label{
+  padding-right: 5px;
+}
+
+
+button{
+  margin-top: 5px;
+  margin-right: 45px;
+  margin-bottom: 5px;
+  color: #8f8889;
+  background-color: #fff8f9;
+  border-radius: 30%;
+  width: 80px;
+  box-shadow: none;
+  border-color: rgba(255, 248, 249, 0.22);
+}
+
+.cat-list{
+  color: #fff6f7;
+  text-align: center;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+.cat-list a{
+  color: #fff6f7;
+  font-size: 30px;
+}

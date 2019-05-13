@@ -1,6 +1,11 @@
+FILTER:
+<select [(ngModel)]="filterid">
+  <option *ngFor="let o of orders" [ngValue]="o.id">{{o.id}}</option>
+</select>
+<button (click)="filter(filterid)">FILTER</button>
 ORDERS:
 <div *ngFor="let o of orders">
-  <div>{{o.id}} - {{o.orderDate}} - {{o.userID}}</div>
+  <div>{{o.id}} - {{o.orderDate}} - {{o.user}}</div>
   <div *ngFor="let i of o.items">ITEMS: {{i}}</div>
 </div>
 
@@ -16,4 +21,31 @@ ITEMS SELECTED:
   <div (click)="deselect(i)">{{i.itemName}}</div>
 </div>
 
+<div>
+  SELECT SUPPLIER:
+  <select [(ngModel)]="supplier">
+    <option *ngFor="let s of suppliers" [ngValue]="s.id">{{s.supName}}</option>
+  </select>
+</div>
+
+<div>
+  SELECT DELIVERYMETHOD:
+  <select [(ngModel)]="deliverymethod">
+    <option *ngFor="let d of deliverymethods" [ngValue]="d.id">{{d.methodDescription}}</option>
+  </select>
+</div>
+
 <button (click)="createOrder()">ORDER</button>
+
+<!--<div>-->
+<!--  SELECT ITEMS TO ORDER:-->
+<!--  <select [(ngModel)]="arrItems">-->
+<!--    <option *ngFor="let i of arrItems"><ng-container (click)="select(i)">{{i.itemName}}</ng-container></option>-->
+<!--  </select>-->
+
+<!--  <br>-->
+<!--  ITEMS SELECTED:-->
+<!--  <select [(ngModel)]="selItems">-->
+<!--    <option *ngFor="let i of selItems"><ng-container (click)="deselect(i)">{{i.itemName}}</ng-container></option>-->
+<!--  </select>-->
+<!--</div>-->

@@ -12,21 +12,50 @@ export interface IProduct {
   buyingPrice: number;
   sellingPrice: number;
   category: number;
-  stock: number;
   image: ImageBitmap;
 }
 
 export interface IOrder {
   id: number;
   orderDate: Date;
-  userID: number;
+  shipDate: Date;
+  arriveDate: Date;
+  user: number;
   items: number[];
+  supId: number;
+  isOrder: boolean;
+  deliveryMethod: number;
+}
+
+export interface ITransactions {
+  id: number;
+  orderId: number;
+  cost: number;
+  isOrder: boolean;
+}
+
+export interface ISuppliers {
+  id: number;
+  supName: string;
+  address: string;
+  phoneNum: number;
+  city: number;
+}
+
+export interface IInventory {
+  id: number;
+  itemNum: number;
+  stock: number;
 }
 
 export interface IAuthResponse {
   token: string;
-  isStaff: boolean;
+  is_staff: boolean;
   username: string;
 }
 
-
+export interface IDeliveryMethod {
+  id: number;
+  methodDescription: string;
+  avgDeliveryDays: number;
+}

@@ -1,11 +1,9 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.views import generic as gn
 
 from shopapi.serializers import UserSerializer
 

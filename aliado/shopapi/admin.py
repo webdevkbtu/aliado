@@ -1,9 +1,12 @@
 from django.contrib import admin
 from shopapi.models import *
-# Register your models here.
+
+admin.site.register(Country)
+admin.site.register(City)
+admin.site.register(DeliveryMethod)
 admin.site.register(Categories)
 admin.site.register(Product)
 admin.site.register(Orders)
 admin.site.register(Suppliers)
-admin.site.register(ShoppingCart)
 admin.site.register(Transactions)
+admin.site.register(Inventory)

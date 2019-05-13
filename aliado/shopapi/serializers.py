@@ -1,7 +1,6 @@
-from shopapi.models import *
 from rest_framework import serializers
 from django.contrib.auth.models import User
-
+from shopapi.models import *
 
 class CategorySerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -20,15 +19,11 @@ class ProductSerializer(serializers.ModelSerializer):
     itemDescription = serializers.CharField(required=False)
     buyingPrice = serializers.IntegerField(required=False)
     sellingPrice = serializers.IntegerField(required=False)
-    categoryID = serializers.IntegerField(read_only=True)
-    stock = serializers.IntegerField(required=False)
     image = serializers.ImageField(required=False)
-    count = serializers.IntegerField(required=False, allow_null=True)
 
     class Meta:
         model = Product
-        fields = (
-        'id', 'itemName', 'itemDescription', 'buyingPrice', 'sellingPrice', 'categoryID', 'stock', 'image', 'count')
+        fields = ('id', 'itemName', 'itemDescription', 'buyingPrice', 'sellingPrice', 'category',  'image')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -45,16 +40,30 @@ class UserSerializer(serializers.ModelSerializer):
 
 class OrdersSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    orderDate = serializers.DateField(required=False)
+    orderDate = serializers.DateTimeField(required=False)
+    arriveDate = serializers.DateTimeField(required=False)
+    isOrder = serializers.BooleanField(required=False)
 
     class Meta:
         model = Orders
-        fields = ('id', 'orderDate', 'userID', 'items')
+        fields = ('id', 'orderDate', 'shipDate', 'arriveDate', 'user', 'items', 'isOrder', 'supId', 'deliveryMethod')
 
     def create(self, validated_data):
         items = validated_data.pop('items')
         instance = Orders.objects.create(**validated_data)
         instance.items.set(items)
+        cost = 0
+        if instance.isOrder:
+            for i in items:
+                cost += i.buyingPrice
+                Inventory.objects.filter(id=i.id).update(stock=Inventory.objects.get(id=i.id).stock + 10)
+
+        else:
+            for i in items:
+                cost += i.sellingPrice
+                Inventory.objects.filter(id=i.id).update(stock=Inventory.objects.get(id=i.id).stock - 1)
+
+        Transactions.objects.create(orderId=instance, cost=cost, isOrder=instance.isOrder)
         return instance
 
 
@@ -62,29 +71,32 @@ class SuppliersSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     supName = serializers.CharField(required=False)
     address = serializers.CharField(required=False)
-    supKind = CategorySerializer(required=False)
 
     class Meta:
         model = Suppliers
-        fields = ('id', 'supName', 'address', 'supKind')
+        fields = ('id', 'supName', 'address', 'phoneNum', 'city')
 
 
-class ShoppingCartSerializer(serializers.ModelSerializer):
+class TransactionsSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-
-    class Meta:
-        model = ShoppingCart
-        fields = ('id', 'userID', 'items')
-
-
-class Transactions(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-    userID = serializers.IntegerField(read_only=True)
     cost = serializers.IntegerField(required=False)
-    isOrder = serializers.BooleanField()
 
     class Meta:
         model = Transactions
-        fields = ('id', 'userID', 'cost', 'isOrder')
+        fields = ('id', 'orderId', 'cost', 'isOrder')
 
 
+class DeliveryMethodSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DeliveryMethod
+        fields = '__all__'
+
+
+class InventorySerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    amount = serializers.IntegerField(required=False)
+
+    class Meta:
+        model = Inventory
+        fields = ('id', 'itemNum', 'amount')

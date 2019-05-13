@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ProviderService} from '../shared/services/provider.service';
-import {IOrder, IProduct} from '../shared/models/models';
+import {IDeliveryMethod, IOrder, IProduct, ISuppliers} from '../shared/models/models';
 import {of} from 'rxjs';
 
 @Component({
@@ -13,21 +13,30 @@ export class OrdersComponent implements OnInit {
   public selItems: IProduct[] = [];
   public orders: IOrder[] = [];
   public items: number[] = [];
+  public suppliers: ISuppliers[] = [];
+  public deliverymethods: IDeliveryMethod[] = [];
+  public supplier: number = 1;
+  public deliverymethod: number = 1;
+  public filterid: number;
 
   constructor(private provider: ProviderService) {
     this.provider.getAllProducts().then(res => this.arrItems = res);
+    this.provider.getSuppliers().then(res => this.suppliers = res);
+    this.provider.getDeliveryMethod().then(res => this.deliverymethods = res);
   }
 
   ngOnInit() {
     this.provider.getOrders().then(res => {
-      this.orders = res;
+      res.forEach(item=>this.orders.push(item));
       this.selItems = [];
     });
   }
 
   createOrder() {
     this.selItems.forEach(item => this.items.push(item.id));
-    this.provider.createOrder(this.items).then(res => this.provider.getOrders().then(r => this.orders = r));
+    console.log(this.supplier);
+    console.log(this.deliverymethod);
+    this.provider.createOrder(this.items, true, this.supplier, this.deliverymethod).then(res => this.provider.getOrders().then(r => this.orders = r));
   }
 
   select(product: IProduct) {
@@ -37,5 +46,9 @@ export class OrdersComponent implements OnInit {
   deselect(product: IProduct) {
     this.arrItems.push(product);
     this.selItems = this.selItems.filter(item => item !== product);
+  }
+
+  filter(id: number){
+    this.provider.getOrder(id).then(res => {this.orders = []; this.orders.push(res)})
   }
 }

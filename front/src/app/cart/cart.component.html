@@ -1,3 +1,17 @@
-<p>
-  cart works!
-</p>
+<div class="cart">
+  <div *ngFor="let i of products">
+    <div>{{i.itemName}}</div>
+    <div>{{i.itemDescription}}</div>
+    <div>{{i.sellingPrice}}</div>
+  </div>
+  <div>
+    <div>COST: {{cost}}</div>
+    <div>
+      SELECT DELIVERYMETHOD:
+      <select [(ngModel)]="deliverymethod">
+        <option *ngFor="let d of deliverymethods" [ngValue]="d.id">{{d.methodDescription}}</option>
+      </select>
+    </div>
+  <button (click)="buy()">BUY</button>
+  </div>
+</div>

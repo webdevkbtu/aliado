@@ -13,7 +13,7 @@ export class ProductsComponent implements OnInit {
   public params: any;
   public loading = false;
   public product: IProduct;
-  public items: any = [];
+  public items: Array<any> = [];
   constructor(private route: ActivatedRoute, private provider: ProviderService) { }
 
   ngOnInit() {
@@ -25,8 +25,10 @@ export class ProductsComponent implements OnInit {
     if (localStorage.getItem('cart') !== null) {
       this.items = JSON.parse(localStorage.getItem('cart'));
     }
-    this.items.push(JSON.stringify(product.id));
-
+    if (!this.items.includes(JSON.stringify(product.id))){
+      this.items.push(JSON.stringify(product.id));
+      console.log(this.items)
+    }
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
 

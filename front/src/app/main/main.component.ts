@@ -14,12 +14,8 @@ export class MainComponent implements OnInit {
   public products: IProduct[] = [];
   public name: any = '';
   public description: any = '';
-  public itemName = '';
-  public itemDesc = '';
-  public bPrice = '';
-  public sPrice = '';
-  public category = '';
-  public stock = '';
+  public signupname: any = '';
+  public signuppassword: any = '';
   public username = '';
   public password = '';
   public email = '';
@@ -67,8 +63,8 @@ export class MainComponent implements OnInit {
   }
 
   // tslint:disable-next-line:max-line-length
-  createProduct(itemName: string, itemDescription: string, buyingPrice: number, sellingPrice: number, category: number, stock: number, image: ImageBitmap) {
-    const product: IProduct = {id: null, itemName, itemDescription, buyingPrice, sellingPrice, category, stock, image};
+  createProduct(itemName: string, itemDescription: string, buyingPrice: number, sellingPrice: number, category: number, image: ImageBitmap) {
+    const product: IProduct = {id: null, itemName, itemDescription, buyingPrice, sellingPrice, category, image};
     this.provider.createProduct(product);
   }
 
@@ -77,7 +73,7 @@ export class MainComponent implements OnInit {
     if (this.username !== '' && this.password !== '') {
       this.provider.auth(this.username, this.password).then(res => {
         localStorage.setItem('token', res.token);
-        this.isStaff = res.isStaff;
+        this.isStaff = res.is_staff;
         this.logged = true;
         this.loggedUsername = res.username;
         this.username = '';
@@ -97,15 +93,15 @@ export class MainComponent implements OnInit {
   }
 
   signup() {
-    if (this.username !== '' && this.email && this.password !== '') {
-      this.provider.signup(this.username, this.email, this.password).then(res =>
-        this.provider.auth(this.username, this.password).then(r => {
+    if (this.signupname!== '' && this.email && this.signuppassword!== '') {
+      this.provider.signup(this.signupname, this.email, this.signuppassword).then(res =>
+        this.provider.auth(this.signupname, this.signuppassword).then(r => {
         localStorage.setItem('token', r.token);
-        this.isStaff = r.isStaff;
+        this.isStaff = r.is_staff;
         this.logged = true;
         this.loggedUsername = r.username;
-        this.username = '';
-        this.password = '';
+        this.signupname = '';
+        this.signuppassword = '';
         }));
     }
   }

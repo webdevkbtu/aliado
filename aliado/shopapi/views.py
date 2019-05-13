@@ -1,12 +1,10 @@
-from django.shortcuts import render
+from django.http import Http404
 from rest_framework import generics, status
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from shopapi.models import *
 from shopapi.serializers import *
-from django.http import Http404
 
 
 class CategoryGetCreate(generics.ListCreateAPIView):
@@ -29,7 +27,6 @@ class AllProducts(APIView):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 
 class ProductGetCreate(generics.ListCreateAPIView):
@@ -60,25 +57,36 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class OrdersGetCreate(generics.ListCreateAPIView):
     serializer_class = OrdersSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAuthenticated, )
 
     def get_queryset(self):
         return Orders.objects.all()
 
     def perform_create(self, serializer):
-        print(serializer.validated_data)
-        serializer.save(userID=self.request.user)
+        serializer.save(user=self.request.user)
 
 
-class ShoppingCart(APIView):
+class SuppliersGet(generics.ListAPIView):
+    serializer_class = SuppliersSerializer
+    permission_classes = (IsAdminUser, )
+
+    def get_queryset(self):
+        return Suppliers.objects.all()
+
+
+class DeliveryMethodsGet(generics.ListAPIView):
+    serializer_class = DeliveryMethodSerializer
     permission_classes = (IsAuthenticated, )
 
-    def put(self, request):
-        cart = ShoppingCart.objects.get(userID=request.user)
-        serializer = ShoppingCartSerializer(data=request.data, instance=cart)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors)
+    def get_queryset(self):
+        return DeliveryMethod.objects.all()
 
 
+class OrderRetrieve(generics.RetrieveAPIView):
+    serializer_class = OrdersSerializer
+    permission_classes = (IsAdminUser, )
+
+    def get_queryset(self):
+        print(Orders.objects.filter(id=self.kwargs['pk']))
+        queryset = Orders.objects.filter(id=self.kwargs['pk'])
+        return queryset

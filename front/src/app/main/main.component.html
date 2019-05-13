@@ -1,26 +1,48 @@
 <div>
-  <ng-container *ngIf="!logged">
-    <input type="text" [(ngModel)]="username">
-    <input type="password" [(ngModel)]="password">
-    <button (click)="auth()">LOG IN</button>
-    <br>
-    <input type="text" [(ngModel)]="username">
-    <input type="text" [(ngModel)]="email">
-    <input type="password" [(ngModel)]="password">
-    <button (click)="signup()">SIGN UP</button>
+  <div class="header-main">
+  <ng-container class="ng-header" *ngIf="!logged">
+    <div style="float: left">
+      <div>
+        <label for="user">Username</label>
+        <input id="user" type="text" [(ngModel)]="username">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" [(ngModel)]="password">
+      </div>
+      <button class="but" (click)="auth()">LOG IN</button>
+    </div>
+    <div>
+      <div>
+        <label for="newuser">New Username</label>
+        <input id="newuser" type="text" [(ngModel)]="signupname">
+      </div>
+      <div>
+        <label for="email">E-mail</label>
+        <input id="email" type="text" [(ngModel)]="email">
+      </div>
+      <div>
+        <label for="newpassword">Password</label>
+        <input id="newpassword" type="password" [(ngModel)]="signuppassword">
+      </div>
+      <button class="but" (click)="signup()">SIGN UP</button>
+    </div>
   </ng-container>
 
   <ng-container *ngIf="logged">
-    <h4>HI {{loggedUsername}}</h4>
+    <h4>Welcome, {{loggedUsername}}</h4>
     <div>
-      <div routerLink="/orders/">ORDERS</div>
+      <button routerLink="/cart/">CART</button>
     </div>
     <div>
       <button (click)="logout()">LOG OUT</button>
     </div>
 
     <div>
-      <ng-container *ngIf="provider.isStaff">
+      <ng-container *ngIf="isStaff">
+        <div>
+          <button routerLink="/orders/">ORDERS</button>
+        </div>
       CREATE CATEGORY
         <div>
           <input type="text" [(ngModel)]="name">
@@ -32,11 +54,8 @@
   </ng-container>
 
 </div>
-<div>
-
-
   CATEGORIES:
-  <div>
+  <div class="cat-list">
     <div *ngFor="let c of categories">
         <div><a routerLink="/categories/{{c.id}}">{{c.categoryName}}</a></div>
     </div>
