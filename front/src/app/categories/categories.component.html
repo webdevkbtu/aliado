@@ -26,9 +26,9 @@
         <div class="row">
           <div class="col-sm" *ngFor="let p of products">
             <div class="card mb-3">
-              <img src="{{p.image}}" class="card-img-top" alt="{{p.itemName}}">
+              <img src="{{p.image}}" class="card-img-top" alt="{{p.itemName}}" routerLink="/products/{{p.id}}">
               <div class="card-body">
-                <h5 class="card-title">{{p.itemName}}</h5>
+                <h5 class="card-title" routerLink="/products/{{p.id}}">{{p.itemName}}</h5>
                 <p class="card-text">{{p.itemDescription}}</p>
                 <p class="card-text"><small class="text-muted">Price: {{p.sellingPrice}}$</small></p>
 
