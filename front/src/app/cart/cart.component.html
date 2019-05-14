@@ -10,13 +10,13 @@
       </div>
       <ul class="list-group" *ngFor="let i of products">
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          {{i.itemName}}
-          <span class="badge badge-primary badge-pill"></span>
+           Brand:
+          <span class="badge badge-primary badge-pill">{{i.itemName}}</span>
         </li>
 
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          {{i.itemDescription}}
-          <span class="badge badge-primary badge-pill"></span>
+          Good:
+          <span class="badge badge-primary badge-pill">{{i.itemDescription}}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           Price:
@@ -43,6 +43,7 @@
 
 
       </ul>
+      <br>
       <button type="button" class="btn btn-outline-success" (click)="buy()" >Buy</button>
 
     </div>
