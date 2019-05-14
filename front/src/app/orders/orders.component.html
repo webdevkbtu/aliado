@@ -16,7 +16,7 @@
     <div class="col-sm-6" *ngFor="let o of orders">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Number: {{o.user}} - Date: {{o.orderDate}}</h5>
+          <h5 class="card-title">USER: {{o.user}} - Date: {{o.orderDate}}</h5>
           <p class="card-text" *ngFor="let i of o.items">Items: {{i}}</p>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>

@@ -27,22 +27,19 @@
           <span class="badge badge-primary badge-pill">{{cost}}</span>
         </li>
         <br>
-
         <div class="list-group">
+      </ul>
+      <div class="list-group">
           <a class="list-group-item list-group-item-action active">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">Chose the delivery method:</h5>
               <small>3 days</small>
             </div>
-            <select class="custom-select" [(ngModel)]="deliverymethod">
-              <option *ngFor="let d of deliverymethods" [ngValue]="d.id">{{d.methodDescription}}</option>
-            </select>
           </a>
-        </div>
-        <br>
-
-
-      </ul>
+      </div>
+      <select class="custom-select" [(ngModel)]="deliverymethod">
+              <option *ngFor="let d of deliverymethods" [ngValue]="d.id">{{d.methodDescription}}</option>
+      </select>
       <br>
       <button type="button" class="btn btn-outline-success" (click)="buy()" >Buy</button>
 
