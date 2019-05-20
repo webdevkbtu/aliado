@@ -8,7 +8,9 @@
 | --- | --- | --- |
 | Бакытнурулы Ерасыл| [hentaai](https://github.com/hentaai) | |
 | Макатов Самат | [makatov](https://github.com/Makatov) |  |
-| Орал Алмас| [Almajesty15](https://github.com/Almajesty15) | almas.oral.kz@gmail.com |
+| Мусаев Аскар | [aseke6172](https://github.com/aseke7182) | aseke7182@mail.com |
+| Утебалиев Дербес | [derbess](https://github.com/derbess) | uderbes@gmail.com |
+| Сахыбекова Балнур | [bestriess](https://github.com/balnur00) |  |
 
 
 
@@ -25,5 +27,3 @@
 выгодные товары накидывая маржу напрямую в дб.
 Коротко: по сути, обычный интернет магазин но с оплатой в тенге и удобным
 сервисом
-
-# testing
