@@ -20,8 +20,9 @@ def login(request):
     user = serializer.validated_data.get('user')
     is_staff = user.is_staff
     username = user.username
+    email = user.email
     token, created = Token.objects.get_or_create(user=user)
-    return Response({'token': token.key, 'is_staff': is_staff, 'username': username})
+    return Response({'token': token.key, 'is_staff': is_staff, 'username': username, 'email': email})
 
 
 @api_view(['POST'])

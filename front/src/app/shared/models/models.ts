@@ -52,6 +52,7 @@ export interface IAuthResponse {
   token: string;
   is_staff: boolean;
   username: string;
+  email: string;
 }
 
 export interface IDeliveryMethod {

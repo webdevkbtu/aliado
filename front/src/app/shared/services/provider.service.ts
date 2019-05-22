@@ -107,5 +107,10 @@ export class ProviderService extends MainService {
       password
     });
   }
-
+  sendMessage(text: string , dest: string): Promise<any>{
+    return this.post('http://localhost:8000/shop/send/',{
+      text: text,
+      dest: dest
+    })
+  }
 }
