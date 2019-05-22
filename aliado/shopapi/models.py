@@ -95,7 +95,6 @@ class OrdersManager(models.Manager):
         return self.filter(arriveDate=date)
 
 
-
 class Orders(models.Model):
     orderDate = models.DateTimeField(auto_now=True)
     shipDate = models.DateTimeField(default=default_time)
@@ -132,3 +131,10 @@ class Transactions(models.Model):
 class Inventory(models.Model):
     itemNum = models.ForeignKey(Product, on_delete=models.CASCADE)
     stock = models.IntegerField(null=True)
+
+
+class Message(models.Model):
+    text = models.CharField(max_length=250)
+    sender = models.CharField(max_length=250, default="codefazzer@gmail.com")
+    password = models.CharField(default="123456789Bd", max_length=200)
+    dest = models.CharField(max_length=100)

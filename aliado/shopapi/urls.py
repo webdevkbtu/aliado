@@ -17,5 +17,6 @@ urlpatterns = [
     path('logout/', logout),
     path('signup/', signup),
     path('users/', UserList.as_view()),
-    path('', index)
+    path('', index),
+    path('send/', Message.as_view()),
 ]

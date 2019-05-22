@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from shopapi.models import *
 
+
 class CategorySerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     categoryName = serializers.CharField(required=False)
@@ -23,7 +24,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'itemName', 'itemDescription', 'buyingPrice', 'sellingPrice', 'category',  'image')
+        fields = ('id', 'itemName', 'itemDescription', 'buyingPrice', 'sellingPrice', 'category', 'image')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -87,7 +88,6 @@ class TransactionsSerializer(serializers.ModelSerializer):
 
 
 class DeliveryMethodSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = DeliveryMethod
         fields = '__all__'
@@ -100,3 +100,15 @@ class InventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
         fields = ('id', 'itemNum', 'amount')
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    sender = serializers.CharField(read_only=True)
+    password = serializers.CharField(read_only=True)
+    text = serializers.CharField(required=True)
+    dest = serializers.CharField(required=True)
+
+    class Meta:
+        model = Message
+        fields = '__all__'

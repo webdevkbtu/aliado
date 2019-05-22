@@ -5,7 +5,9 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from shopapi.models import *
+import smtplib
 from shopapi.serializers import *
+from django.core.mail import send_mail
 
 
 class CategoryGetCreate(generics.ListCreateAPIView):
@@ -58,7 +60,7 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class OrdersGetCreate(generics.ListCreateAPIView):
     serializer_class = OrdersSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         return Orders.objects.all()
@@ -69,7 +71,7 @@ class OrdersGetCreate(generics.ListCreateAPIView):
 
 class SuppliersGet(generics.ListAPIView):
     serializer_class = SuppliersSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAdminUser,)
 
     def get_queryset(self):
         return Suppliers.objects.all()
@@ -77,7 +79,7 @@ class SuppliersGet(generics.ListAPIView):
 
 class DeliveryMethodsGet(generics.ListAPIView):
     serializer_class = DeliveryMethodSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         return DeliveryMethod.objects.all()
@@ -85,7 +87,7 @@ class DeliveryMethodsGet(generics.ListAPIView):
 
 class OrderRetrieve(generics.RetrieveAPIView):
     serializer_class = OrdersSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAdminUser,)
 
     def get_queryset(self):
         print(Orders.objects.filter(id=self.kwargs['pk']))
@@ -95,3 +97,22 @@ class OrderRetrieve(generics.RetrieveAPIView):
 
 def index(request):
     return render(request, 'index.html')
+
+
+class Message(APIView):
+    def post(self, request):
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid():
+            mes = serializer.save()
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(mes.sender, mes.password)
+            server.sendmail(mes.sender, mes.dest, mes.text)
+            print(mes.text)
+            server.quit()
+            print(serializer.data.get('sender'))
+            if mes:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors)
