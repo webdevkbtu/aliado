@@ -12,6 +12,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import {AuthInterceptor} from './AuthInterceptor';
 import { OrdersComponent } from './orders/orders.component';
 import { CartComponent } from './cart/cart.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CartComponent } from './cart/cart.component';
     CategoriesComponent,
     OrdersComponent,
     CartComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
