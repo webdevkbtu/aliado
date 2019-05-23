@@ -1,0 +1,42 @@
+.dress{
+  position: relative;
+  text-align: center;
+}
+.fen{
+  position: relative;
+  text-align: center;
+}
+
+.bag{
+  position: relative;
+  text-align: center;
+}
+
+.lou{
+  position: relative;
+  text-align: center;
+}
+
+.gall{
+}
+
+h5{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+}
+
+h3{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+}
+/*.dress{*/
+/*  background-image: url("../../assets/dress.jpg");*/
+/*  width: 700px;*/
+/*  height: 500px;*/
+/*}*/
