@@ -13,6 +13,7 @@ import {AuthInterceptor} from './AuthInterceptor';
 import { OrdersComponent } from './orders/orders.component';
 import { CartComponent } from './cart/cart.component';
 import { FooterComponent } from './footer/footer.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FooterComponent } from './footer/footer.component';
     OrdersComponent,
     CartComponent,
     FooterComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,
