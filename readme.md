@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | Бакытнурулы Ерасыл| [hentaai](https://github.com/hentaai) | |
 | Макатов Самат | [makatov](https://github.com/Makatov) |  |
-| Мусаев Аскар | [aseke6172](https://github.com/aseke7182) | aseke7182@mail.com |
+| Мусаев Аскар | [aseke7182](https://github.com/aseke7182) | aseke7182@mail.com |
 | Утебалиев Дербес | [derbess](https://github.com/derbess) | uderbes@gmail.com |
 | Сахыбекова Балнур | [bestriess](https://github.com/balnur00) |  |
 
