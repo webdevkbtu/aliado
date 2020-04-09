@@ -6,7 +6,7 @@
 ### Team Members
 | Name | GitHub account | Email |
 | --- | --- | --- |
-| Бакытнурулы Ерасыл| [hentaai](https://github.com/yeraassyl) | |
+| Бакытнурулы Ерасыл| [yeraassyl](https://github.com/yeraassyl) | |
 | Макатов Самат | [makatov](https://github.com/Makatov) |  |
 | Мусаев Аскар | [aseke7182](https://github.com/aseke7182) | aseke7182@mail.com |
 | Утебалиев Дербес | [derbess](https://github.com/derbess) | uderbes@gmail.com |
